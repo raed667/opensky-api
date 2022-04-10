@@ -1,1 +1,1 @@
-export * from './lib/OpenSkyApi'
+export * from './lib/OpenSkyApi';

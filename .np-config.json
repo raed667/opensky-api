@@ -1,0 +1,6 @@
+{
+    "name": "opensky",
+    "np": {
+        "contents": "dist"
+    }
+}

@@ -1,8 +1,8 @@
-import { StateVector } from '../types/StateVector'
+import { StateVector } from '../types/StateVector';
 
 export const stateVectorMapper = (raw: any[]): StateVector => {
   if (!raw || !Array.isArray(raw)) {
-    throw new Error('StateVectorMapper requires input array')
+    throw new Error('StateVectorMapper requires input array');
   }
 
   return {
@@ -25,5 +25,5 @@ export const stateVectorMapper = (raw: any[]): StateVector => {
     squawk: raw[14],
     spi: raw[15],
     positionSource: raw[16],
-  }
-}
+  };
+};
