@@ -1,6 +1,7 @@
 {
-    "name": "opensky",
+    "name": "opensky-api",
     "np": {
-        "contents": "dist"
+        "yarn": false,
+        "contents": "build"
     }
 }
