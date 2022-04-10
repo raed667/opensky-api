@@ -1,6 +1,6 @@
 {
   "name": "opensky-api",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Library wrapper for OpenSky REST API.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
