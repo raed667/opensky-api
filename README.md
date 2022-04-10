@@ -7,13 +7,13 @@ This project is not affiliated to [OpenSky Network](https://github.com/openskyne
 ## Installation
 
 ```
-yarn add opensky
+yarn add opensky-api
 ```
 
 or
 
 ```
-npm install opensky --save
+npm install opensky-api --save
 ```
 
 ## Basic usage
@@ -21,7 +21,7 @@ npm install opensky --save
 The following example is equivalent to calling the REST API with this endpoint `https://opensky-network.org/api/states/all?time=1458564121&icao24=3c6444`
 
 ```ts
-import { OpenSkyApi } from 'opensky';
+import { OpenSkyApi } from 'opensky-api';
 
 const api = OpenSkyApi();
 

@@ -42,7 +42,8 @@
     "node": ">=12"
   },
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "^0.26.1",
+    "iso-url": "^1.2.1"
   },
   "devDependencies": {
     "@ava/typescript": "^1.1.1",

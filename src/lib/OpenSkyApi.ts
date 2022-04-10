@@ -1,147 +1,146 @@
-'use strict';
+'use strict'
 
-import { URLSearchParams } from 'url';
+import axios, { Axios, AxiosRequestConfig } from 'axios'
+import { URLSearchParams } from 'iso-url'
 
-import axios, { Axios, AxiosRequestConfig } from 'axios';
+import { stateVectorMapper } from '../mappers/StateVectorMapper'
+import { Credentials } from '../types/Credentials'
 
-import { stateVectorMapper } from '../mappers/StateVectorMapper';
-import { Credentials } from '../types/Credentials';
+import { BoundingBox } from './BoundingBox'
 
-import { BoundingBox } from './BoundingBox';
-
-type RequestType = 'GET_STATES' | 'GET_MY_STATES';
+type RequestType = 'GET_STATES' | 'GET_MY_STATES'
 
 const axiosConfig: AxiosRequestConfig = {
   timeout: 5000,
   headers: { 'User-Agent': 'OpenSkyApi-TS/1.0' },
-};
+}
 
 export class OpenSkyApi {
-  private static HOST = 'opensky-network.org';
-  private static API_ROOT = `https://${this.HOST}/api`;
-  private static STATES_URI = `${this.API_ROOT}/states/all`;
-  private static MY_STATES_URI = `${this.API_ROOT}/states/own`;
+  private static HOST = 'opensky-network.org'
+  private static API_ROOT = `https://${this.HOST}/api`
+  private static STATES_URI = `${this.API_ROOT}/states/all`
+  private static MY_STATES_URI = `${this.API_ROOT}/states/own`
 
-  private _axios: Axios;
+  private _axios: Axios
 
-  private authenticated = false;
+  private authenticated = false
 
   private lastRequestTime: Record<RequestType, number | null> = {
     GET_STATES: null,
     GET_MY_STATES: null,
-  };
+  }
 
   constructor(credentials?: Credentials) {
     if (credentials?.username && credentials?.password) {
       axiosConfig.auth = {
         username: credentials?.username,
         password: credentials?.password,
-      };
-      this.authenticated = true;
+      }
+      this.authenticated = true
     }
 
-    this._axios = axios.create(axiosConfig);
+    this._axios = axios.create(axiosConfig)
   }
 
   public getStates(
     time: number | null,
     icao24: string[] | null,
-    bbox?: BoundingBox | null
+    bbox?: BoundingBox | null,
   ) {
-    const nvps: Array<Record<string, string>> = [];
+    const nvps: Array<Record<string, string>> = []
 
     if (time) {
-      nvps.push({ time: String(time) });
+      nvps.push({ time: String(time) })
     }
 
     icao24?.forEach((i) => {
-      nvps.push({ icao24: i });
-    });
+      nvps.push({ icao24: i })
+    })
 
     if (bbox) {
-      nvps.push({ lamin: String(bbox.minLatitude) });
-      nvps.push({ lamax: String(bbox.maxLatitude) });
-      nvps.push({ lomin: String(bbox.minLongitude) });
-      nvps.push({ lomax: String(bbox.maxLongitude) });
+      nvps.push({ lamin: String(bbox.minLatitude) })
+      nvps.push({ lamax: String(bbox.maxLatitude) })
+      nvps.push({ lomin: String(bbox.minLongitude) })
+      nvps.push({ lomax: String(bbox.maxLongitude) })
     }
 
     if (this.checkRateLimit('GET_STATES', 4900, 9900)) {
-      return this.getOpenSkyStates(OpenSkyApi.STATES_URI, nvps);
+      return this.getOpenSkyStates(OpenSkyApi.STATES_URI, nvps)
     }
-    return null;
+    return null
   }
 
   public getMyStates(
     time: number | null,
     icao24: string[] | null,
-    serials: number[]
+    serials: number[],
   ) {
     if (!this.authenticated) {
-      throw new Error("Anonymous access of 'myStates' not allowed");
+      throw new Error("Anonymous access of 'myStates' not allowed")
     }
 
-    const nvps: Array<Record<string, string>> = [];
+    const nvps: Array<Record<string, string>> = []
 
     if (time) {
-      nvps.push({ time: String(time) });
+      nvps.push({ time: String(time) })
     }
 
     icao24?.forEach((i) => {
-      nvps.push({ icao24: i });
-    });
+      nvps.push({ icao24: i })
+    })
 
     serials?.forEach((s) => {
-      nvps.push({ serials: String(s) });
-    });
+      nvps.push({ serials: String(s) })
+    })
 
     if (this.checkRateLimit('GET_MY_STATES', 900, 0)) {
-      return this.getOpenSkyStates(OpenSkyApi.MY_STATES_URI, nvps);
+      return this.getOpenSkyStates(OpenSkyApi.MY_STATES_URI, nvps)
     }
-    return null;
+    return null
   }
 
   private async getOpenSkyStates(
     url: string,
-    nvps: Array<Record<string, string>>
+    nvps: Array<Record<string, string>>,
   ) {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams()
 
     nvps.forEach((i) => {
       for (const [key, value] of Object.entries(i)) {
-        params.append(key, value);
+        params.append(key, value)
       }
-    });
+    })
 
     const { data } = await this._axios.get<{ time: number; states: any[] }>(
       url,
       {
         params,
-      }
-    );
+      },
+    )
 
-    const states = data?.states?.map((state) => stateVectorMapper(state)) || [];
+    const states = data?.states?.map((state) => stateVectorMapper(state)) || []
 
     return {
       time: data.time,
       states,
-    };
+    }
   }
 
   private checkRateLimit(
     type: RequestType,
     timeDiffAuth: number,
-    timeDiffNoAuth: number
+    timeDiffNoAuth: number,
   ): boolean {
-    const t = this.lastRequestTime[type];
-    const now = Date.now();
-    this.lastRequestTime[type] = now;
+    const t = this.lastRequestTime[type]
+    const now = Date.now()
+    this.lastRequestTime[type] = now
 
     return (
       t == null ||
       (this.authenticated && now - t > timeDiffAuth) ||
       (!this.authenticated && now - t > timeDiffNoAuth)
-    );
+    )
   }
 }
 
-export { BoundingBox } from './BoundingBox';
+export { BoundingBox } from './BoundingBox'
