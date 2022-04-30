@@ -30,12 +30,11 @@ api
   .then((response) => console.log(response.states));
 ```
 
-[Frontend example](https://codesandbox.io/s/stoic-keldysh-y0mj7o?file=/src/App.js)
-[NodeJs example](https://codesandbox.io/s/billowing-glitter-l2nj36?file=/routes/index.js)
+[CodeSandbox Frontend Example](https://codesandbox.io/s/stoic-keldysh-y0mj7o?file=/src/App.js) | [CodeSandbox NodeJs Example](https://codesandbox.io/s/billowing-glitter-l2nj36?file=/routes/index.js)
 
 ## Maintainers
 
-This project is maintained by Raed Chammam.
+This project is maintained by [Raed Chammam](https://raed.dev).
 
 ## License
 
