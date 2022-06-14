@@ -1,5 +1,7 @@
 # OpenSky
 
+[Status] Stable but not actively used. If you encounter a problem, create an issue and I will respond with best effort.
+
 Lightweight wrapper for OpenSky’s REST API. The API lets you retrieve live airspace information for research and non-commerical purposes. Please refer to [OpenSky Network API documentation](https://openskynetwork.github.io/opensky-api/index.html).
 
 This project is not affiliated to [OpenSky Network](https://github.com/openskynetwork), but the codebase is heavily inspired by the [opensky-api](https://github.com/openskynetwork/opensky-api) Java implementation.
