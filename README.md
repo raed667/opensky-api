@@ -1,5 +1,7 @@
 # OpenSky
 
+[![Quality Check](https://github.com/raed667/opensky-api/actions/workflows/ci.yml/badge.svg)](https://github.com/raed667/opensky-api/actions/workflows/ci.yml)
+
 [Status] Stable but not actively used. If you encounter a problem, create an issue and I will respond with best effort.
 
 Lightweight wrapper for OpenSky’s REST API. The API lets you retrieve live airspace information for research and non-commerical purposes. Please refer to [OpenSky Network API documentation](https://openskynetwork.github.io/opensky-api/index.html).
