@@ -47,6 +47,16 @@ api
 This project is maintained by [Raed Chammam](https://raed.dev).
 
 This project is considered stable but not in active development. If you encounter a problem, create an issue and I will respond with best effort.
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## 📜 License
 
 [GPL-3.0](LICENSE)
