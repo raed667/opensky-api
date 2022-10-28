@@ -51,6 +51,13 @@ This project is considered stable but not in active development. If you encounte
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://raed.dev"><img src="https://avatars.githubusercontent.com/u/1442690?v=4?s=100" width="100px;" alt="Raed Chammam"/><br /><sub><b>Raed Chammam</b></sub></a><br /><a href="https://github.com/raed667/opensky-api/commits?author=Raed667" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
