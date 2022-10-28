@@ -1,7 +1,7 @@
 {
     "sandboxes": [
-        "y0mj7o",
-        "l2nj36"
+        "opensky-api-frontend-y0mj7o",
+        "opensky-api-node-l2nj36"
     ],
     "node": "16",
     "publishDirectory": {
