@@ -1,0 +1,10 @@
+{
+    "sandboxes": [
+        "y0mj7o",
+        "l2nj36"
+    ],
+    "node": "16",
+    "publishDirectory": {
+        "opensky-api": "build/module"
+    }
+}
