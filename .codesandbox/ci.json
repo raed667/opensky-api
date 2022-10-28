@@ -6,6 +6,6 @@
     ],
     "node": "16",
     "publishDirectory": {
-        "opensky-api": "build"
+        "opensky-api": "build/module"
     }
 }
