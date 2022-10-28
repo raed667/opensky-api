@@ -3,6 +3,7 @@
 [![Quality Check](https://github.com/raed667/opensky-api/actions/workflows/ci.yml/badge.svg)](https://github.com/raed667/opensky-api/actions/workflows/ci.yml)
 ![Stability: Stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)
 ![npm](https://img.shields.io/npm/v/opensky-api)
+[![codecov](https://codecov.io/gh/raed667/opensky-api/branch/main/graph/badge.svg?token=NDV86JJG7V)](https://codecov.io/gh/raed667/opensky-api)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/opensky-api)
 ![npm downloads](https://img.shields.io/npm/dt/opensky-api)
 ![LICENSE](https://img.shields.io/npm/l/opensky-api)
