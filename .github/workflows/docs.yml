@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - "main"
+
+name: Publish Documentation
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build docs
+        uses: actions/setup-node@v3
+        env:
+          FORCE_COLOR: 0
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn doc:html
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/docs
