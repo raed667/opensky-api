@@ -22,7 +22,11 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn build
-
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: |
+            build
       - uses: willcaul/jest-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
