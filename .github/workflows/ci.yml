@@ -28,3 +28,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           test-command: "yarn jest"
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
