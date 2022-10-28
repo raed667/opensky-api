@@ -22,3 +22,11 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn build
+
+      - uses: willcaul/jest-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "yarn jest"
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
