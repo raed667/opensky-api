@@ -54,7 +54,7 @@ This project is considered stable but not in active development. If you encounte
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://raed.dev"><img src="https://avatars.githubusercontent.com/u/1442690?v=4?s=100" width="100px;" alt="Raed Chammam"/><br /><sub><b>Raed Chammam</b></sub></a><br /><a href="https://github.com/raed667/opensky-api/commits?author=Raed667" title="Code">💻</a></td>
+      <td align="center"><a href="https://raed.dev"><img src="https://avatars.githubusercontent.com/u/1442690?v=4?s=100" width="100px;" alt="Raed Chammam"/><br /><sub><b>Raed Chammam</b></sub></a><br /><a href="https://github.com/raed667/opensky-api/commits?author=Raed667" title="Code">💻</a> <a href="https://github.com/raed667/opensky-api/commits?author=Raed667" title="Tests">⚠️</a> <a href="https://github.com/raed667/opensky-api/commits?author=Raed667" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
