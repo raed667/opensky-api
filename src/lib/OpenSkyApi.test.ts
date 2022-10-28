@@ -1,7 +1,7 @@
-import { BoundingBox } from './BoundingBox';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
+import { BoundingBox } from './BoundingBox';
 import { OpenSkyApi } from './OpenSkyApi';
 
 const axiosMock = new MockAdapter(axios);
