@@ -21,6 +21,12 @@ jobs:
           cache: "yarn"
       - run: yarn install --frozen-lockfile
       - run: yarn test
+      - run: yarn build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: |
+            build
       - uses: willcaul/jest-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,12 +34,3 @@ jobs:
           test-command: "yarn jest"
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
-
-      - name: Create Build
-        run: yarn build
-      - name: Archive build
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            build

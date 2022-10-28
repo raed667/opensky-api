@@ -1,4 +1,5 @@
 {
+    "buildCommand": "build",
     "sandboxes": [
         "opensky-api-frontend-y0mj7o",
         "opensky-api-node-l2nj36"
