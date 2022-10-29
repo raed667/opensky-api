@@ -32,7 +32,7 @@ import { OpenSkyApi } from 'opensky-api';
 const api = OpenSkyApi();
 
 api
-  .getStates(1458564121, ['3c6444'])
+  .getStates({ time: 1458564121, icao24: ['3c6444'] })
   .then((response) => console.log(response.states));
 ```
 

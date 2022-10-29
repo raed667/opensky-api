@@ -4,12 +4,17 @@ export class BoundingBox {
   maxLatitude: number;
   maxLongitude: number;
 
-  constructor(
-    minLatitude: number,
-    maxLatitude: number,
-    minLongitude: number,
-    maxLongitude: number
-  ) {
+  constructor({
+    minLatitude,
+    maxLatitude,
+    minLongitude,
+    maxLongitude,
+  }: {
+    minLatitude: number;
+    maxLatitude: number;
+    minLongitude: number;
+    maxLongitude: number;
+  }) {
     this.checkLatitude(minLatitude);
     this.checkLatitude(maxLatitude);
     this.checkLongitude(minLongitude);

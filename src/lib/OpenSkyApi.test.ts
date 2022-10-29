@@ -32,7 +32,11 @@ describe('OpenSkyApi', () => {
           });
 
         const api = new OpenSkyApi(credentials);
-        const result = await api.getMyStates(123456789, [], []);
+        const result = await api.getMyStates({
+          time: 123456789,
+          icao24: [],
+          serials: [],
+        });
 
         expect(result).toEqual({ time: 123456789, states: [] });
 
@@ -61,7 +65,11 @@ describe('OpenSkyApi', () => {
           });
 
         const api = new OpenSkyApi(credentials);
-        const result = await api.getMyStates(123456789, icao24, serials);
+        const result = await api.getMyStates({
+          time: 123456789,
+          icao24,
+          serials,
+        });
 
         expect(result).toEqual({
           time: 123456789,
@@ -109,8 +117,17 @@ describe('OpenSkyApi', () => {
           });
 
         const api = new OpenSkyApi();
-        const bb = new BoundingBox(-90, 90, -180, 180);
-        const result = await api.getStates(123456789, icao24, bb);
+        const boundingBox = new BoundingBox({
+          minLatitude: -90,
+          maxLatitude: 90,
+          minLongitude: -180,
+          maxLongitude: 180,
+        });
+        const result = await api.getStates({
+          time: 123456789,
+          icao24,
+          boundingBox,
+        });
 
         expect(result).toEqual({
           time: 123456789,
@@ -144,7 +161,7 @@ describe('OpenSkyApi', () => {
         const api = new OpenSkyApi();
 
         await expect(async () => {
-          await api.getMyStates(123456789, [], []);
+          await api.getMyStates({ time: 123456789, icao24: [], serials: [] });
         }).rejects.toThrowError("Anonymous access of 'myStates' not allowed");
       });
     });
