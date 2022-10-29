@@ -42,11 +42,15 @@ export class OpenSkyApi {
     this._axios = axios.create(axiosConfig);
   }
 
-  public getStates(
-    time: number | null,
-    icao24: string[] | null,
-    bbox?: BoundingBox | null
-  ) {
+  public getStates({
+    time,
+    icao24,
+    boundingBox,
+  }: {
+    time?: number | null;
+    icao24?: string[] | null;
+    boundingBox?: BoundingBox | null;
+  }) {
     const nvps: Array<Record<string, string>> = [];
 
     if (time) {
@@ -57,11 +61,11 @@ export class OpenSkyApi {
       nvps.push({ icao24: i });
     });
 
-    if (bbox) {
-      nvps.push({ lamin: String(bbox.minLatitude) });
-      nvps.push({ lamax: String(bbox.maxLatitude) });
-      nvps.push({ lomin: String(bbox.minLongitude) });
-      nvps.push({ lomax: String(bbox.maxLongitude) });
+    if (boundingBox) {
+      nvps.push({ lamin: String(boundingBox.minLatitude) });
+      nvps.push({ lamax: String(boundingBox.maxLatitude) });
+      nvps.push({ lomin: String(boundingBox.minLongitude) });
+      nvps.push({ lomax: String(boundingBox.maxLongitude) });
     }
 
     if (this.checkRateLimit('GET_STATES', 4900, 9900)) {
@@ -70,11 +74,15 @@ export class OpenSkyApi {
     return null;
   }
 
-  public getMyStates(
-    time: number | null,
-    icao24: string[] | null,
-    serials: number[]
-  ) {
+  public getMyStates({
+    time,
+    icao24,
+    serials,
+  }: {
+    time?: number | null;
+    icao24?: string[] | null;
+    serials?: number[] | null;
+  }) {
     if (!this.authenticated) {
       throw new Error("Anonymous access of 'myStates' not allowed");
     }

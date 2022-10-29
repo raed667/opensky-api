@@ -5,7 +5,12 @@ describe('BoundingBox', () => {
     'should check invalid min-latitude $lat',
     ({ lat }) => {
       expect(() => {
-        new BoundingBox(lat, 0, 0, 0);
+        new BoundingBox({
+          minLatitude: lat,
+          maxLatitude: 0,
+          minLongitude: 0,
+          maxLongitude: 0,
+        });
       }).toThrowError(`Illegal latitude ${lat}. Must be within [-90, 90]`);
     }
   );
@@ -14,7 +19,12 @@ describe('BoundingBox', () => {
     'should check invalid max-latitude $lat',
     ({ lat }) => {
       expect(() => {
-        new BoundingBox(0, lat, 0, 0);
+        new BoundingBox({
+          minLatitude: 0,
+          maxLatitude: lat,
+          minLongitude: 0,
+          maxLongitude: 0,
+        });
       }).toThrowError(`Illegal latitude ${lat}. Must be within [-90, 90]`);
     }
   );
@@ -23,7 +33,12 @@ describe('BoundingBox', () => {
     'should check invalid min-longitude $lon',
     ({ lon }) => {
       expect(() => {
-        new BoundingBox(0, 0, lon, 0);
+        new BoundingBox({
+          minLatitude: 0,
+          maxLatitude: 0,
+          minLongitude: lon,
+          maxLongitude: 0,
+        });
       }).toThrowError(`Illegal longitude ${lon}. Must be within [-180, 180]`);
     }
   );
@@ -32,13 +47,23 @@ describe('BoundingBox', () => {
     'should check invalid max-longitude $lon',
     ({ lon }) => {
       expect(() => {
-        new BoundingBox(0, 0, 0, lon);
+        new BoundingBox({
+          minLatitude: 0,
+          maxLatitude: 0,
+          minLongitude: 0,
+          maxLongitude: lon,
+        });
       }).toThrowError(`Illegal longitude ${lon}. Must be within [-180, 180]`);
     }
   );
 
   it('should call constructor', () => {
-    const bb = new BoundingBox(-90, 90, -180, 180);
+    const bb = new BoundingBox({
+      minLatitude: -90,
+      maxLatitude: 90,
+      minLongitude: -180,
+      maxLongitude: 180,
+    });
 
     expect(bb.minLatitude).toEqual(-90);
     expect(bb.maxLatitude).toEqual(90);
