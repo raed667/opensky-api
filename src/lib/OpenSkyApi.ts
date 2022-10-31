@@ -46,9 +46,9 @@ export class OpenSkyApi {
   }
 
   public getFlightsByAircraft(
-    icao24: string | null,
-    beginTime: number | null,
-    endTime: number | null,
+    icao24: string,
+    beginTime: number,
+    endTime: number,
   ){
     const nvps: Array<Record<string, string>> = []
 
