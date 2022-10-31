@@ -90,6 +90,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="openskyapi.html#_axios" class="tsd-kind-icon">_axios</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="openskyapi.html#authenticated" class="tsd-kind-icon">authenticated</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="openskyapi.html#api_root" class="tsd-kind-icon">API_<wbr>ROOT</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="openskyapi.html#flights_by_aircraft_uri" class="tsd-kind-icon">FLIGHTS_<wbr>BY_<wbr>AIRCRAFT_<wbr>URI</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="openskyapi.html#host" class="tsd-kind-icon">HOST</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="openskyapi.html#my_states_uri" class="tsd-kind-icon">MY_<wbr>STATES_<wbr>URI</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="openskyapi.html#states_uri" class="tsd-kind-icon">STATES_<wbr>URI</a></li>
@@ -99,7 +100,9 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="openskyapi.html#checkratelimit" class="tsd-kind-icon">check<wbr>Rate<wbr>Limit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="openskyapi.html#getflightsbyaircraft" class="tsd-kind-icon">get<wbr>Flights<wbr>ByAircraft</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="openskyapi.html#getmystates" class="tsd-kind-icon">get<wbr>MyStates</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="openskyapi.html#getopenskyflightsbyaircraft" class="tsd-kind-icon">get<wbr>Open<wbr>Sky<wbr>Flights<wbr>ByAircraft</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="openskyapi.html#getopenskystates" class="tsd-kind-icon">get<wbr>Open<wbr>Sky<wbr>States</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="openskyapi.html#getstates" class="tsd-kind-icon">get<wbr>States</a></li>
 							</ul>
@@ -125,7 +128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L31">lib/OpenSkyApi.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L34">lib/OpenSkyApi.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -147,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">_axios<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Axios</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L24">lib/OpenSkyApi.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L26">lib/OpenSkyApi.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -157,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">authenticated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L26">lib/OpenSkyApi.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L28">lib/OpenSkyApi.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +170,17 @@
 					<div class="tsd-signature tsd-kind-icon">API_<wbr>ROOT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x60;https://${this.HOST}/api&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L20">lib/OpenSkyApi.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L21">lib/OpenSkyApi.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="flights_by_aircraft_uri" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> FLIGHTS_<wbr>BY_<wbr>AIRCRAFT_<wbr>URI</h3>
+					<div class="tsd-signature tsd-kind-icon">FLIGHTS_<wbr>BY_<wbr>AIRCRAFT_<wbr>URI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x60;${OpenSkyApi.API_ROOT}/flights/aircraft&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L24">lib/OpenSkyApi.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">HOST<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;opensky-network.org&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L19">lib/OpenSkyApi.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L20">lib/OpenSkyApi.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">MY_<wbr>STATES_<wbr>URI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x60;${this.API_ROOT}/states/own&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L22">lib/OpenSkyApi.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L23">lib/OpenSkyApi.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +210,7 @@
 					<div class="tsd-signature tsd-kind-icon">STATES_<wbr>URI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x60;${this.API_ROOT}/states/all&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L21">lib/OpenSkyApi.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L22">lib/OpenSkyApi.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L129">lib/OpenSkyApi.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L182">lib/OpenSkyApi.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -234,6 +247,35 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getflightsbyaircraft" class="tsd-anchor"></a>
+					<h3>get<wbr>Flights<wbr>ByAircraft</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Flights<wbr>ByAircraft<span class="tsd-signature-symbol">(</span>icao24<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, beginTime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, endTime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#flight" class="tsd-signature-type">Flight</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L48">lib/OpenSkyApi.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>icao24: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>beginTime: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>endTime: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#flight" class="tsd-signature-type">Flight</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getmystates" class="tsd-anchor"></a>
 					<h3>get<wbr>MyStates</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -243,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L73">lib/OpenSkyApi.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L101">lib/OpenSkyApi.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -263,6 +305,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="getopenskyflightsbyaircraft" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Open<wbr>Sky<wbr>Flights<wbr>ByAircraft</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Open<wbr>Sky<wbr>Flights<wbr>ByAircraft<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nvps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#flight" class="tsd-signature-type">Flight</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L157">lib/OpenSkyApi.ts:157</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>nvps: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#flight" class="tsd-signature-type">Flight</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="getopenskystates" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Open<wbr>Sky<wbr>States</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -272,7 +340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L102">lib/OpenSkyApi.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L130">lib/OpenSkyApi.ts:130</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -298,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L45">lib/OpenSkyApi.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L73">lib/OpenSkyApi.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -326,16 +394,26 @@
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Request<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L28">lib/OpenSkyApi.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L30">lib/OpenSkyApi.ts:30</a></li>
 						</ul>
 					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="lastrequesttime.get_flights" class="tsd-anchor"></a>
+						<h3>GET_<wbr>FLIGHTS</h3>
+						<div class="tsd-signature tsd-kind-icon">GET_<wbr>FLIGHTS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L33">lib/OpenSkyApi.ts:33</a></li>
+							</ul>
+						</aside>
+					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="lastrequesttime.get_my_states" class="tsd-anchor"></a>
 						<h3>GET_<wbr>MY_<wbr>STATES</h3>
 						<div class="tsd-signature tsd-kind-icon">GET_<wbr>MY_<wbr>STATES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L30">lib/OpenSkyApi.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L32">lib/OpenSkyApi.ts:32</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -345,7 +423,7 @@
 						<div class="tsd-signature tsd-kind-icon">GET_<wbr>STATES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/a327e82/src/lib/OpenSkyApi.ts#L29">lib/OpenSkyApi.ts:29</a></li>
+								<li>Defined in <a href="https://github.com/raed667/opensky-api/blob/925010f/src/lib/OpenSkyApi.ts#L31">lib/OpenSkyApi.ts:31</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -383,6 +461,9 @@
 								<a href="openskyapi.html#api_root" class="tsd-kind-icon">API_<wbr>ROOT</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="openskyapi.html#flights_by_aircraft_uri" class="tsd-kind-icon">FLIGHTS_<wbr>BY_<wbr>AIRCRAFT_<wbr>URI</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 								<a href="openskyapi.html#host" class="tsd-kind-icon">HOST</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
@@ -395,7 +476,13 @@
 								<a href="openskyapi.html#checkratelimit" class="tsd-kind-icon">check<wbr>Rate<wbr>Limit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="openskyapi.html#getflightsbyaircraft" class="tsd-kind-icon">get<wbr>Flights<wbr>ByAircraft</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="openskyapi.html#getmystates" class="tsd-kind-icon">get<wbr>MyStates</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="openskyapi.html#getopenskyflightsbyaircraft" class="tsd-kind-icon">get<wbr>Open<wbr>Sky<wbr>Flights<wbr>ByAircraft</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="openskyapi.html#getopenskystates" class="tsd-kind-icon">get<wbr>Open<wbr>Sky<wbr>States</a>
@@ -412,6 +499,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#credentials" class="tsd-kind-icon">Credentials</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../globals.html#flight" class="tsd-kind-icon">Flight</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#positionsource" class="tsd-kind-icon">Position<wbr>Source</a>
