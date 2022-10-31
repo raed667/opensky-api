@@ -5,10 +5,11 @@ import { URLSearchParams } from 'iso-url';
 
 import { stateVectorMapper } from '../mappers/StateVectorMapper';
 import { Credentials } from '../types/Credentials';
+import { Flight } from '../types/Flight';
 
 import { BoundingBox } from './BoundingBox';
 
-type RequestType = 'GET_STATES' | 'GET_MY_STATES';
+type RequestType = 'GET_STATES' | 'GET_MY_STATES' | 'GET_FLIGHTS';
 
 const axiosConfig: AxiosRequestConfig = {
   timeout: 5000,
@@ -20,6 +21,7 @@ export class OpenSkyApi {
   private static API_ROOT = `https://${this.HOST}/api`;
   private static STATES_URI = `${this.API_ROOT}/states/all`;
   private static MY_STATES_URI = `${this.API_ROOT}/states/own`;
+  private static FLIGHTS_BY_AIRCRAFT_URI = `${OpenSkyApi.API_ROOT}/flights/aircraft`;
 
   private _axios: Axios;
 
@@ -28,6 +30,7 @@ export class OpenSkyApi {
   private lastRequestTime: Record<RequestType, number | null> = {
     GET_STATES: null,
     GET_MY_STATES: null,
+    GET_FLIGHTS: null,
   };
 
   constructor(credentials?: Credentials) {
@@ -40,6 +43,31 @@ export class OpenSkyApi {
     }
 
     this._axios = axios.create(axiosConfig);
+  }
+
+  public getFlightsByAircraft(
+    icao24: string,
+    beginTime: number,
+    endTime: number
+  ) {
+    const nvps: Array<Record<string, string>> = [];
+
+    if (beginTime) {
+      nvps.push({ begin: String(beginTime) });
+    }
+
+    if (endTime) {
+      nvps.push({ end: String(endTime) });
+    }
+
+    if (icao24) {
+      nvps.push({ icao24: icao24 });
+    }
+
+    return this.getOpenSkyFlightsByAircraft(
+      OpenSkyApi.FLIGHTS_BY_AIRCRAFT_URI,
+      nvps
+    );
   }
 
   public getStates(
@@ -124,6 +152,31 @@ export class OpenSkyApi {
       time: data.time,
       states,
     };
+  }
+
+  private async getOpenSkyFlightsByAircraft(
+    url: string,
+    nvps: Array<Record<string, string>>
+  ) {
+    const params = new URLSearchParams();
+
+    nvps.forEach((i) => {
+      for (const [key, value] of Object.entries(i)) {
+        params.append(key, value);
+      }
+    });
+
+    const data = await this._axios.get<Flight[]>(url, {
+      params,
+      validateStatus: (status) => {
+        return (status >= 200 && status < 300) || status == 404;
+      },
+    });
+
+    if (Array.isArray(data?.data)) {
+      return data.data;
+    }
+    return new Array<Flight>();
   }
 
   private checkRateLimit(
