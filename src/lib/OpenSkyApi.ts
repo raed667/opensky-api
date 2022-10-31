@@ -163,19 +163,19 @@ export class OpenSkyApi {
       }
     })
 
-    try{
-      const data = await this._axios.get<Flight[]>(
-        url,
-        {
-          params,
+    const data = await this._axios.get<Flight[]>(
+      url,
+      {
+        params,
+        validateStatus: (status) => {
+          return (status >= 200 && status < 300) || status == 404;
         },
-      )
+      },
+    )
 
-      if(Array.isArray(data?.data)){
-        return data.data;
-      }
-    } catch(x) {}
-    
+    if(Array.isArray(data?.data)){
+      return data.data;
+    }
     return new Array<Flight>();
   }
 
