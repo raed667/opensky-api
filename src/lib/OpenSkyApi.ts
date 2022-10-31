@@ -1,4 +1,4 @@
-'use strict';
+('use strict');
 
 import axios, { Axios, AxiosRequestConfig } from 'axios';
 import { URLSearchParams } from 'iso-url';
@@ -6,7 +6,9 @@ import { URLSearchParams } from 'iso-url';
 import { stateVectorMapper } from '../mappers/StateVectorMapper';
 import { Credentials } from '../types/Credentials';
 import { Flight } from '../types/Flight';
+import { StateVector } from '../types/StateVector';
 
+import { flightMapper } from './../mappers/FlightMapper';
 import { BoundingBox } from './BoundingBox';
 
 type RequestType = 'GET_STATES' | 'GET_MY_STATES' | 'GET_FLIGHTS';
@@ -21,7 +23,10 @@ export class OpenSkyApi {
   private static API_ROOT = `https://${this.HOST}/api`;
   private static STATES_URI = `${this.API_ROOT}/states/all`;
   private static MY_STATES_URI = `${this.API_ROOT}/states/own`;
+  private static FLIGHTS_URI = `${OpenSkyApi.API_ROOT}/flights/all`;
   private static FLIGHTS_BY_AIRCRAFT_URI = `${OpenSkyApi.API_ROOT}/flights/aircraft`;
+  private static FLIGHTS_BY_ARRIVAL_URI = `${OpenSkyApi.API_ROOT}/flights/arrival`;
+  private static FLIGHTS_BY_DEPARTURE_URI = `${OpenSkyApi.API_ROOT}/flights/departure`;
 
   private _axios: Axios;
 
@@ -45,6 +50,43 @@ export class OpenSkyApi {
     this._axios = axios.create(axiosConfig);
   }
 
+  public getFlights(beginTime: number, endTime: number) {
+    const nvps: Array<Record<string, string>> = [];
+
+    nvps.push({ begin: String(beginTime) });
+    nvps.push({ end: String(endTime) });
+
+    return this.getOpenSkyFlights(OpenSkyApi.FLIGHTS_URI, nvps);
+  }
+
+  public getFlightsByArrivalAirport(
+    airport: string,
+    beginTime: number,
+    endTime: number
+  ) {
+    const nvps: Array<Record<string, string>> = [];
+
+    nvps.push({ airport });
+    nvps.push({ begin: String(beginTime) });
+    nvps.push({ end: String(endTime) });
+
+    return this.getOpenSkyFlights(OpenSkyApi.FLIGHTS_BY_ARRIVAL_URI, nvps);
+  }
+
+  public getFlightsByDepartureAirport(
+    airport: string,
+    beginTime: number,
+    endTime: number
+  ) {
+    const nvps: Array<Record<string, string>> = [];
+
+    nvps.push({ airport });
+    nvps.push({ begin: String(beginTime) });
+    nvps.push({ end: String(endTime) });
+
+    return this.getOpenSkyFlights(OpenSkyApi.FLIGHTS_BY_DEPARTURE_URI, nvps);
+  }
+
   public getFlightsByAircraft(
     icao24: string,
     beginTime: number,
@@ -52,22 +94,11 @@ export class OpenSkyApi {
   ) {
     const nvps: Array<Record<string, string>> = [];
 
-    if (beginTime) {
-      nvps.push({ begin: String(beginTime) });
-    }
+    nvps.push({ icao24 });
+    nvps.push({ begin: String(beginTime) });
+    nvps.push({ end: String(endTime) });
 
-    if (endTime) {
-      nvps.push({ end: String(endTime) });
-    }
-
-    if (icao24) {
-      nvps.push({ icao24: icao24 });
-    }
-
-    return this.getOpenSkyFlightsByAircraft(
-      OpenSkyApi.FLIGHTS_BY_AIRCRAFT_URI,
-      nvps
-    );
+    return this.getOpenSkyFlights(OpenSkyApi.FLIGHTS_BY_AIRCRAFT_URI, nvps);
   }
 
   public getStates(
@@ -130,7 +161,10 @@ export class OpenSkyApi {
   private async getOpenSkyStates(
     url: string,
     nvps: Array<Record<string, string>>
-  ) {
+  ): Promise<{
+    time: number;
+    states: StateVector[];
+  }> {
     const params = new URLSearchParams();
 
     nvps.forEach((i) => {
@@ -154,10 +188,10 @@ export class OpenSkyApi {
     };
   }
 
-  private async getOpenSkyFlightsByAircraft(
+  private async getOpenSkyFlights(
     url: string,
     nvps: Array<Record<string, string>>
-  ) {
+  ): Promise<Flight[]> {
     const params = new URLSearchParams();
 
     nvps.forEach((i) => {
@@ -166,15 +200,14 @@ export class OpenSkyApi {
       }
     });
 
-    const data = await this._axios.get<Flight[]>(url, {
+    const { data } = await this._axios.get<Flight[]>(url, {
       params,
-      validateStatus: (status) => {
-        return (status >= 200 && status < 300) || status == 404;
-      },
+      validateStatus: (status) =>
+        (status >= 200 && status < 300) || status === 404,
     });
 
-    if (Array.isArray(data?.data)) {
-      return data.data;
+    if (Array.isArray(data)) {
+      return data.map((d) => flightMapper(d));
     }
     return new Array<Flight>();
   }
