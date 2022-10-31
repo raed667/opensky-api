@@ -1,4 +1,4 @@
-'use strict';
+('use strict');
 
 import axios, { Axios, AxiosRequestConfig } from 'axios';
 import { URLSearchParams } from 'iso-url';
@@ -6,7 +6,9 @@ import { URLSearchParams } from 'iso-url';
 import { stateVectorMapper } from '../mappers/StateVectorMapper';
 import { Credentials } from '../types/Credentials';
 import { Flight } from '../types/Flight';
+import { StateVector } from '../types/StateVector';
 
+import { flightMapper } from './../mappers/FlightMapper';
 import { BoundingBox } from './BoundingBox';
 
 type RequestType = 'GET_STATES' | 'GET_MY_STATES' | 'GET_FLIGHTS';
@@ -159,7 +161,10 @@ export class OpenSkyApi {
   private async getOpenSkyStates(
     url: string,
     nvps: Array<Record<string, string>>
-  ) {
+  ): Promise<{
+    time: number;
+    states: StateVector[];
+  }> {
     const params = new URLSearchParams();
 
     nvps.forEach((i) => {
@@ -186,7 +191,7 @@ export class OpenSkyApi {
   private async getOpenSkyFlights(
     url: string,
     nvps: Array<Record<string, string>>
-  ) {
+  ): Promise<Flight[]> {
     const params = new URLSearchParams();
 
     nvps.forEach((i) => {
@@ -195,14 +200,14 @@ export class OpenSkyApi {
       }
     });
 
-    const data = await this._axios.get<Flight[]>(url, {
+    const { data } = await this._axios.get<Flight[]>(url, {
       params,
       validateStatus: (status) =>
         (status >= 200 && status < 300) || status === 404,
     });
 
-    if (Array.isArray(data?.data)) {
-      return data.data;
+    if (Array.isArray(data)) {
+      return data.map((d) => flightMapper(d));
     }
     return new Array<Flight>();
   }

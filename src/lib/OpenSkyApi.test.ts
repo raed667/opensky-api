@@ -148,5 +148,368 @@ describe('OpenSkyApi', () => {
         }).rejects.toThrowError("Anonymous access of 'myStates' not allowed");
       });
     });
+
+    describe('getFlights', () => {
+      it('404 should return empty array', async () => {
+        axiosMock
+          .onGet(
+            'https://opensky-network.org/api/flights/all?begin=1517227200&end=1517230800'
+          )
+          .reply(() => {
+            return [
+              404,
+              [
+                {
+                  icao24: 'c078fd',
+                  firstSeen: 1517227317,
+                  estDepartureAirport: 'CYYZ',
+                  lastSeen: 1517230676,
+                  estArrivalAirport: 'CYUL',
+                  callsign: 'SWG9426 ',
+                  estDepartureAirportHorizDistance: 525,
+                  estDepartureAirportVertDistance: 104,
+                  estArrivalAirportHorizDistance: 3244,
+                  estArrivalAirportVertDistance: 81,
+                  departureAirportCandidatesCount: 1,
+                  arrivalAirportCandidatesCount: 1,
+                },
+                {
+                  icao24: '8686b2',
+                  firstSeen: 1517229296,
+                  estDepartureAirport: null,
+                  lastSeen: 1517230536,
+                  estArrivalAirport: 'RJTK',
+                  callsign: 'JAL920  ',
+                  estDepartureAirportHorizDistance: null,
+                  estDepartureAirportVertDistance: null,
+                  estArrivalAirportHorizDistance: 15167,
+                  estArrivalAirportVertDistance: 1421,
+                  departureAirportCandidatesCount: 0,
+                  arrivalAirportCandidatesCount: 1,
+                },
+              ],
+            ];
+          });
+
+        const api = new OpenSkyApi();
+        const result = await api.getFlights(1517227200, 1517230800);
+
+        expect(result).toEqual([]);
+      });
+
+      it('should return flights', async () => {
+        axiosMock
+          .onGet('https://opensky-network.org/api/flights/all')
+          .reply(() => {
+            return [
+              200,
+              [
+                {
+                  icao24: 'c078fd',
+                  firstSeen: 1517227317,
+                  estDepartureAirport: 'CYYZ',
+                  lastSeen: 1517230676,
+                  estArrivalAirport: 'CYUL',
+                  callsign: '  SWG9426 ',
+                  estDepartureAirportHorizDistance: 525,
+                  estDepartureAirportVertDistance: 104,
+                  estArrivalAirportHorizDistance: 3244,
+                  estArrivalAirportVertDistance: 81,
+                  departureAirportCandidatesCount: 1,
+                  arrivalAirportCandidatesCount: 1,
+                },
+                {
+                  icao24: '8686b2',
+                  firstSeen: 1517229296,
+                  estDepartureAirport: null,
+                  lastSeen: 1517230536,
+                  estArrivalAirport: 'RJTK',
+                  callsign: 'JAL920  ',
+                  estDepartureAirportHorizDistance: null,
+                  estDepartureAirportVertDistance: null,
+                  estArrivalAirportHorizDistance: 15167,
+                  estArrivalAirportVertDistance: 1421,
+                  departureAirportCandidatesCount: 0,
+                  arrivalAirportCandidatesCount: 1,
+                },
+              ],
+            ];
+          });
+
+        const api = new OpenSkyApi();
+        const result = await api.getFlights(1517227200, 1517230800);
+
+        expect(result).toEqual([
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'SWG9426',
+            departureAirportCandidatesCount: 1,
+            estArrivalAirport: 'CYUL',
+            estArrivalAirportHorizDistance: 3244,
+            estArrivalAirportVertDistance: 81,
+            estDepartureAirport: 'CYYZ',
+            estDepartureAirportHorizDistance: 525,
+            estDepartureAirportVertDistance: 104,
+            firstSeen: 1517227317,
+            icao24: 'c078fd',
+            lastSeen: 1517230676,
+          },
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'JAL920',
+            departureAirportCandidatesCount: 0,
+            estArrivalAirport: 'RJTK',
+            estArrivalAirportHorizDistance: 15167,
+            estArrivalAirportVertDistance: 1421,
+            estDepartureAirport: null,
+            estDepartureAirportHorizDistance: null,
+            estDepartureAirportVertDistance: null,
+            firstSeen: 1517229296,
+            icao24: '8686b2',
+            lastSeen: 1517230536,
+          },
+        ]);
+      });
+    });
+
+    describe('getFlightsByArrivalAirport', () => {
+      it('should return flights', async () => {
+        axiosMock
+          .onGet('https://opensky-network.org/api/flights/arrival')
+          .reply(() => {
+            return [
+              200,
+              [
+                {
+                  icao24: 'c078fd',
+                  firstSeen: 1517227317,
+                  estDepartureAirport: 'CYYZ',
+                  lastSeen: 1517230676,
+                  estArrivalAirport: 'CYUL',
+                  callsign: '  SWG9426 ',
+                  estDepartureAirportHorizDistance: 525,
+                  estDepartureAirportVertDistance: 104,
+                  estArrivalAirportHorizDistance: 3244,
+                  estArrivalAirportVertDistance: 81,
+                  departureAirportCandidatesCount: 1,
+                  arrivalAirportCandidatesCount: 1,
+                },
+                {
+                  icao24: '8686b2',
+                  firstSeen: 1517229296,
+                  estDepartureAirport: null,
+                  lastSeen: 1517230536,
+                  estArrivalAirport: 'RJTK',
+                  callsign: 'JAL920  ',
+                  estDepartureAirportHorizDistance: null,
+                  estDepartureAirportVertDistance: null,
+                  estArrivalAirportHorizDistance: 15167,
+                  estArrivalAirportVertDistance: 1421,
+                  departureAirportCandidatesCount: 0,
+                  arrivalAirportCandidatesCount: 1,
+                },
+              ],
+            ];
+          });
+
+        const api = new OpenSkyApi();
+        const result = await api.getFlightsByArrivalAirport(
+          'ABCD',
+          1517227200,
+          1517230800
+        );
+
+        expect(result).toEqual([
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'SWG9426',
+            departureAirportCandidatesCount: 1,
+            estArrivalAirport: 'CYUL',
+            estArrivalAirportHorizDistance: 3244,
+            estArrivalAirportVertDistance: 81,
+            estDepartureAirport: 'CYYZ',
+            estDepartureAirportHorizDistance: 525,
+            estDepartureAirportVertDistance: 104,
+            firstSeen: 1517227317,
+            icao24: 'c078fd',
+            lastSeen: 1517230676,
+          },
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'JAL920',
+            departureAirportCandidatesCount: 0,
+            estArrivalAirport: 'RJTK',
+            estArrivalAirportHorizDistance: 15167,
+            estArrivalAirportVertDistance: 1421,
+            estDepartureAirport: null,
+            estDepartureAirportHorizDistance: null,
+            estDepartureAirportVertDistance: null,
+            firstSeen: 1517229296,
+            icao24: '8686b2',
+            lastSeen: 1517230536,
+          },
+        ]);
+      });
+    });
+
+    describe('getFlightsByDepartureAirport', () => {
+      it('should return flights', async () => {
+        axiosMock
+          .onGet('https://opensky-network.org/api/flights/departure')
+          .reply(() => {
+            return [
+              200,
+              [
+                {
+                  icao24: 'c078fd',
+                  firstSeen: 1517227317,
+                  estDepartureAirport: 'CYYZ',
+                  lastSeen: 1517230676,
+                  estArrivalAirport: 'CYUL',
+                  callsign: '  SWG9426 ',
+                  estDepartureAirportHorizDistance: 525,
+                  estDepartureAirportVertDistance: 104,
+                  estArrivalAirportHorizDistance: 3244,
+                  estArrivalAirportVertDistance: 81,
+                  departureAirportCandidatesCount: 1,
+                  arrivalAirportCandidatesCount: 1,
+                },
+                {
+                  icao24: '8686b2',
+                  firstSeen: 1517229296,
+                  estDepartureAirport: null,
+                  lastSeen: 1517230536,
+                  estArrivalAirport: 'RJTK',
+                  callsign: 'JAL920  ',
+                  estDepartureAirportHorizDistance: null,
+                  estDepartureAirportVertDistance: null,
+                  estArrivalAirportHorizDistance: 15167,
+                  estArrivalAirportVertDistance: 1421,
+                  departureAirportCandidatesCount: 0,
+                  arrivalAirportCandidatesCount: 1,
+                },
+              ],
+            ];
+          });
+
+        const api = new OpenSkyApi();
+        const result = await api.getFlightsByDepartureAirport(
+          'ABCD',
+          1517227200,
+          1517230800
+        );
+
+        expect(result).toEqual([
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'SWG9426',
+            departureAirportCandidatesCount: 1,
+            estArrivalAirport: 'CYUL',
+            estArrivalAirportHorizDistance: 3244,
+            estArrivalAirportVertDistance: 81,
+            estDepartureAirport: 'CYYZ',
+            estDepartureAirportHorizDistance: 525,
+            estDepartureAirportVertDistance: 104,
+            firstSeen: 1517227317,
+            icao24: 'c078fd',
+            lastSeen: 1517230676,
+          },
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'JAL920',
+            departureAirportCandidatesCount: 0,
+            estArrivalAirport: 'RJTK',
+            estArrivalAirportHorizDistance: 15167,
+            estArrivalAirportVertDistance: 1421,
+            estDepartureAirport: null,
+            estDepartureAirportHorizDistance: null,
+            estDepartureAirportVertDistance: null,
+            firstSeen: 1517229296,
+            icao24: '8686b2',
+            lastSeen: 1517230536,
+          },
+        ]);
+      });
+    });
+
+    describe('getFlightsByAircraft', () => {
+      it('should return flights', async () => {
+        axiosMock
+          .onGet('https://opensky-network.org/api/flights/aircraft')
+          .reply(() => {
+            return [
+              200,
+              [
+                {
+                  icao24: 'c078fd',
+                  firstSeen: 1517227317,
+                  estDepartureAirport: 'CYYZ',
+                  lastSeen: 1517230676,
+                  estArrivalAirport: 'CYUL',
+                  callsign: '  SWG9426 ',
+                  estDepartureAirportHorizDistance: 525,
+                  estDepartureAirportVertDistance: 104,
+                  estArrivalAirportHorizDistance: 3244,
+                  estArrivalAirportVertDistance: 81,
+                  departureAirportCandidatesCount: 1,
+                  arrivalAirportCandidatesCount: 1,
+                },
+                {
+                  icao24: '8686b2',
+                  firstSeen: 1517229296,
+                  estDepartureAirport: null,
+                  lastSeen: 1517230536,
+                  estArrivalAirport: 'RJTK',
+                  callsign: 'JAL920  ',
+                  estDepartureAirportHorizDistance: null,
+                  estDepartureAirportVertDistance: null,
+                  estArrivalAirportHorizDistance: 15167,
+                  estArrivalAirportVertDistance: 1421,
+                  departureAirportCandidatesCount: 0,
+                  arrivalAirportCandidatesCount: 1,
+                },
+              ],
+            ];
+          });
+
+        const api = new OpenSkyApi();
+        const result = await api.getFlightsByAircraft(
+          'ABCD',
+          1517227200,
+          1517230800
+        );
+
+        expect(result).toEqual([
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'SWG9426',
+            departureAirportCandidatesCount: 1,
+            estArrivalAirport: 'CYUL',
+            estArrivalAirportHorizDistance: 3244,
+            estArrivalAirportVertDistance: 81,
+            estDepartureAirport: 'CYYZ',
+            estDepartureAirportHorizDistance: 525,
+            estDepartureAirportVertDistance: 104,
+            firstSeen: 1517227317,
+            icao24: 'c078fd',
+            lastSeen: 1517230676,
+          },
+          {
+            arrivalAirportCandidatesCount: 1,
+            callsign: 'JAL920',
+            departureAirportCandidatesCount: 0,
+            estArrivalAirport: 'RJTK',
+            estArrivalAirportHorizDistance: 15167,
+            estArrivalAirportVertDistance: 1421,
+            estDepartureAirport: null,
+            estDepartureAirportHorizDistance: null,
+            estDepartureAirportVertDistance: null,
+            firstSeen: 1517229296,
+            icao24: '8686b2',
+            lastSeen: 1517230536,
+          },
+        ]);
+      });
+    });
   });
 });
