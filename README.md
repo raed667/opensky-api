@@ -1,12 +1,12 @@
 # OpenSky
 
 [![Quality Check](https://github.com/raed667/opensky-api/actions/workflows/ci.yml/badge.svg)](https://github.com/raed667/opensky-api/actions/workflows/ci.yml)
-![Stability: Stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)
-![npm](https://img.shields.io/npm/v/opensky-api)
+[![Stability: Stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://raed667.github.io/opensky-api/globals.html)
+[![npm](https://img.shields.io/npm/v/opensky-api)](https://www.npmjs.com/package/opensky-api)
 [![codecov](https://codecov.io/gh/raed667/opensky-api/branch/main/graph/badge.svg?token=NDV86JJG7V)](https://codecov.io/gh/raed667/opensky-api)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/opensky-api)
-![npm downloads](https://img.shields.io/npm/dt/opensky-api)
-![LICENSE](https://img.shields.io/npm/l/opensky-api)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/opensky-api)](https://www.npmjs.com/package/opensky-api)
+[![npm downloads](https://img.shields.io/npm/dt/opensky-api)](https://www.npmjs.com/package/opensky-api)
+[![LICENSE](https://img.shields.io/npm/l/opensky-api)](https://github.com/raed667/opensky-api/blob/main/LICENSE)
 
 Lightweight API wrapper for OpenSky’s REST API. The API lets you retrieve live airspace information for research and non-commercial purposes. Please refer to [OpenSky Network API documentation](https://openskynetwork.github.io/opensky-api/index.html).
 
