@@ -69,5 +69,13 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "bundlewatch": {
+    "files": [
+      {
+        "path": "./build/module/**/*.js",
+        "maxSize": "20kB"
+      }
+    ]
   }
 }
