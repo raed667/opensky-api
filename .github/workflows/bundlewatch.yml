@@ -12,8 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Borales/actions-yarn@v2.1.0
-      - run: yarn install
+      - uses: actions/setup-node@v3
+        env:
+          FORCE_COLOR: 0
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
       - uses: jackyef/bundlewatch-gh-action@master
         with:
           build-script: yarn build
