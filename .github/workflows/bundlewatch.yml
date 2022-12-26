@@ -1,4 +1,4 @@
-name: "Bundlewatch GitHub Action - on Tracked Branches Push"
+name: "Bundlewatch"
 
 on:
   push:
