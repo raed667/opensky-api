@@ -1,14 +1,19 @@
-on: [push]
+name: "Bundlewatch GitHub Action - on Tracked Branches Push"
 
-name: "Bundlewatch"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [synchronize, opened]
 
 jobs:
   bundlewatch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: Borales/actions-yarn@v2.1.0
-      - run: yarn install --frozen-lockfile
+      - run: yarn install
       - uses: jackyef/bundlewatch-gh-action@master
         with:
           build-script: yarn build
