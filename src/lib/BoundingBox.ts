@@ -8,7 +8,7 @@ export class BoundingBox {
     minLatitude: number,
     maxLatitude: number,
     minLongitude: number,
-    maxLongitude: number
+    maxLongitude: number,
   ) {
     this.checkLatitude(minLatitude);
     this.checkLatitude(maxLatitude);

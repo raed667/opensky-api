@@ -153,7 +153,7 @@ describe('OpenSkyApi', () => {
       it('404 should return empty array', async () => {
         axiosMock
           .onGet(
-            'https://opensky-network.org/api/flights/all?begin=1517227200&end=1517230800'
+            'https://opensky-network.org/api/flights/all?begin=1517227200&end=1517230800',
           )
           .reply(() => {
             return [
@@ -316,7 +316,7 @@ describe('OpenSkyApi', () => {
         const result = await api.getFlightsByArrivalAirport(
           'ABCD',
           1517227200,
-          1517230800
+          1517230800,
         );
 
         expect(result).toEqual([
@@ -396,7 +396,7 @@ describe('OpenSkyApi', () => {
         const result = await api.getFlightsByDepartureAirport(
           'ABCD',
           1517227200,
-          1517230800
+          1517230800,
         );
 
         expect(result).toEqual([
@@ -476,7 +476,7 @@ describe('OpenSkyApi', () => {
         const result = await api.getFlightsByAircraft(
           'ABCD',
           1517227200,
-          1517230800
+          1517230800,
         );
 
         expect(result).toEqual([
