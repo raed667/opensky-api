@@ -11,7 +11,7 @@ describe('State Vector Mapper', () => {
   ])('should throw error if raw data is not array: ($raw)', ({ raw }) => {
     // @ts-expect-error this is for testing
     expect(() => stateVectorMapper(raw)).toThrow(
-      'StateVectorMapper requires input array'
+      'StateVectorMapper requires input array',
     );
   });
 
@@ -57,7 +57,7 @@ describe('State Vector Mapper', () => {
         'squawk',
         'spi',
         'positionSource',
-      ])
+      ]),
     ).toEqual({
       icao24: 'icao24',
       callsign: 'callsign',
@@ -81,7 +81,7 @@ describe('State Vector Mapper', () => {
 
   it('should trim the callsign', () => {
     expect(stateVectorMapper(['icao24', '    callsign    ']).callsign).toEqual(
-      'callsign'
+      'callsign',
     );
   });
 
@@ -89,7 +89,7 @@ describe('State Vector Mapper', () => {
     expect(stateVectorMapper(['icao24', null]).callsign).toEqual(undefined);
 
     expect(stateVectorMapper(['icao24', undefined]).callsign).toEqual(
-      undefined
+      undefined,
     );
   });
 });

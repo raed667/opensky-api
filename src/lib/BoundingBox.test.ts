@@ -7,7 +7,7 @@ describe('BoundingBox', () => {
       expect(() => {
         new BoundingBox(lat, 0, 0, 0);
       }).toThrowError(`Illegal latitude ${lat}. Must be within [-90, 90]`);
-    }
+    },
   );
 
   it.each([{ lat: 91 }, { lat: 100 }, { lat: -91 }, { lat: -100 }])(
@@ -16,7 +16,7 @@ describe('BoundingBox', () => {
       expect(() => {
         new BoundingBox(0, lat, 0, 0);
       }).toThrowError(`Illegal latitude ${lat}. Must be within [-90, 90]`);
-    }
+    },
   );
 
   it.each([{ lon: 181 }, { lon: 280 }, { lon: -181 }, { lon: -280 }])(
@@ -25,7 +25,7 @@ describe('BoundingBox', () => {
       expect(() => {
         new BoundingBox(0, 0, lon, 0);
       }).toThrowError(`Illegal longitude ${lon}. Must be within [-180, 180]`);
-    }
+    },
   );
 
   it.each([{ lon: 181 }, { lon: 280 }, { lon: -181 }, { lon: -280 }])(
@@ -34,7 +34,7 @@ describe('BoundingBox', () => {
       expect(() => {
         new BoundingBox(0, 0, 0, lon);
       }).toThrowError(`Illegal longitude ${lon}. Must be within [-180, 180]`);
-    }
+    },
   );
 
   it('should call constructor', () => {

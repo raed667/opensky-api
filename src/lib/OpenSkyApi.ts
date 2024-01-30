@@ -62,7 +62,7 @@ export class OpenSkyApi {
   public getFlightsByArrivalAirport(
     airport: string,
     beginTime: number,
-    endTime: number
+    endTime: number,
   ) {
     const nvps: Array<Record<string, string>> = [];
 
@@ -76,7 +76,7 @@ export class OpenSkyApi {
   public getFlightsByDepartureAirport(
     airport: string,
     beginTime: number,
-    endTime: number
+    endTime: number,
   ) {
     const nvps: Array<Record<string, string>> = [];
 
@@ -90,7 +90,7 @@ export class OpenSkyApi {
   public getFlightsByAircraft(
     icao24: string,
     beginTime: number,
-    endTime: number
+    endTime: number,
   ) {
     const nvps: Array<Record<string, string>> = [];
 
@@ -104,7 +104,7 @@ export class OpenSkyApi {
   public getStates(
     time: number | null,
     icao24: string[] | null,
-    bbox?: BoundingBox | null
+    bbox?: BoundingBox | null,
   ) {
     const nvps: Array<Record<string, string>> = [];
 
@@ -132,7 +132,7 @@ export class OpenSkyApi {
   public getMyStates(
     time: number | null,
     icao24: string[] | null,
-    serials: number[]
+    serials: number[],
   ) {
     if (!this.authenticated) {
       throw new Error("Anonymous access of 'myStates' not allowed");
@@ -160,7 +160,7 @@ export class OpenSkyApi {
 
   private async getOpenSkyStates(
     url: string,
-    nvps: Array<Record<string, string>>
+    nvps: Array<Record<string, string>>,
   ): Promise<{
     time: number;
     states: StateVector[];
@@ -177,7 +177,7 @@ export class OpenSkyApi {
       url,
       {
         params,
-      }
+      },
     );
 
     const states = data?.states?.map((state) => stateVectorMapper(state)) || [];
@@ -190,7 +190,7 @@ export class OpenSkyApi {
 
   private async getOpenSkyFlights(
     url: string,
-    nvps: Array<Record<string, string>>
+    nvps: Array<Record<string, string>>,
   ): Promise<Flight[]> {
     const params = new URLSearchParams();
 
@@ -215,7 +215,7 @@ export class OpenSkyApi {
   private checkRateLimit(
     type: RequestType,
     timeDiffAuth: number,
-    timeDiffNoAuth: number
+    timeDiffNoAuth: number,
   ): boolean {
     const t = this.lastRequestTime[type];
     const now = Date.now();
