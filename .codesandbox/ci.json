@@ -4,7 +4,7 @@
         "opensky-api-frontend-y0mj7o",
         "opensky-api-node-l2nj36"
     ],
-    "node": "20",
+    "node": "18",
     "publishDirectory": {
         "opensky-api": "."
     }
